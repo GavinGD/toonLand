@@ -1,8 +1,10 @@
 import React from 'react';
 import ToonList from '../components/ToonList';
 import NotFoundPage from './NotFoundPage';
+import VotesSection from '../components/VotesSection';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react'
+import AddToonForm from '../components/AddToonForm';
 
 const ToonDetailPage = () => {
   const { id } = useParams();
@@ -29,7 +31,7 @@ const ToonDetailPage = () => {
   return (
     <>
       <h4 className="text-info">{toonInfo.id}. {toonInfo.firstName} {toonInfo.lastName}</h4>
-      <p>This cartoon character has received {toonInfo.votes} votes.</p>
+      <VotesSection id={id} votes={toonInfo.votes} setToonInfo={setToonInfo} /><hr />
       <table style={{ "width": "90%", "margin": "auto" }}>
         <tbody>
           <tr>
@@ -49,7 +51,7 @@ const ToonDetailPage = () => {
           </tr>
         </tbody>
       </table>
-
+      <AddToonForm />
     </>
   );
 }
